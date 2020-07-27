@@ -1,17 +1,18 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require("passport-local-mongoose");
 
 
 const userSchema = new mongoose.Schema({
-    email:{
+    username:{
         type: String,
         required: [true, "You cannot create an article without title"]
     },
     password:{
         type: String,
-        required: [true, "You cannot create an article without content"]
     }
 });
 
+userSchema.plugin(passportLocalMongoose);
 
 const User = mongoose.model('User', userSchema);
 
